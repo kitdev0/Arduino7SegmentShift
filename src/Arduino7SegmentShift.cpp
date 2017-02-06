@@ -1,19 +1,19 @@
 #include "Arduino7SegmentShift.h"
 
-Arduino7SegmentShift::Arduino7SegmentShift(uint8_t _clk_pin, uint8_t _data_pin, uint8_t _latch_pin)
+ARDUINO_7SEGMENT_SHIFT::ARDUINO_7SEGMENT_SHIFT(uint8_t _clk_pin, uint8_t _data_pin, uint8_t _latch_pin)
 {
 	clk_pin = _clk_pin;
 	data_pin = _data_pin;
 	latch_pin = _latch_pin;
 }
 
-Arduino7SegmentShift::~Arduino7SegmentShift()
+ARDUINO_7SEGMENT_SHIFT::~ARDUINO_7SEGMENT_SHIFT()
 {
 
 }
 
 //public
-void Arduino7SegmentShift::init7SegDis(void)
+void ARDUINO_7SEGMENT_SHIFT::init7SegDis(void)
 {
 	unsigned char a = 1, b = 2, c = 4, d = 8, e = 16, f = 32, g = 64, h = 128;
 	//    _a_
@@ -37,7 +37,7 @@ void Arduino7SegmentShift::init7SegDis(void)
 }
 
 //############################################## Display Function ##################################################//
-void Arduino7SegmentShift::displayNumeral(uint16_t _num, uint16_t _digit)
+void ARDUINO_7SEGMENT_SHIFT::displayNumeral(uint16_t _num, uint16_t _digit)
 {
 	register_array[0] = segment_dis[_num];
 	register_array[1] = _digit;
@@ -45,7 +45,7 @@ void Arduino7SegmentShift::displayNumeral(uint16_t _num, uint16_t _digit)
 //	delay(_DIS_DELAY_TIME);
 }
 
-void Arduino7SegmentShift::displayHyphen(uint16_t _digit)
+void ARDUINO_7SEGMENT_SHIFT::displayHyphen(uint16_t _digit)
 {
 	register_array[0] = 0xFF - _DISPLAY_HYPHEN;
 	register_array[1] = _digit;
@@ -53,7 +53,7 @@ void Arduino7SegmentShift::displayHyphen(uint16_t _digit)
 //	delay(_DIS_DELAY_TIME);
 }
 
-void Arduino7SegmentShift::displayChar(uint16_t _char, uint16_t _digit)
+void ARDUINO_7SEGMENT_SHIFT::displayChar(uint16_t _char, uint16_t _digit)
 {
 	register_array[0] = 0xFF - _char;
 	register_array[1] = _digit;
@@ -61,7 +61,7 @@ void Arduino7SegmentShift::displayChar(uint16_t _char, uint16_t _digit)
 //	delay(_DIS_DELAY_TIME);
 }
 
-void Arduino7SegmentShift::displayCharWithDotAndValue(uint16_t _char, uint16_t _value)
+void ARDUINO_7SEGMENT_SHIFT::displayCharWithDotAndValue(uint16_t _char, uint16_t _value)
 {
 	next_value_dis++;
 	if (next_value_dis > 3)
@@ -106,7 +106,7 @@ void Arduino7SegmentShift::displayCharWithDotAndValue(uint16_t _char, uint16_t _
 //	delay(_DIS_DELAY_TIME);
 }
 
-void Arduino7SegmentShift::timeDis(uint16_t seconds, uint16_t minutes)
+void ARDUINO_7SEGMENT_SHIFT::timeDis(uint16_t seconds, uint16_t minutes)
 {
 	next_time_dis++;
 	if (next_time_dis > 3)
@@ -143,7 +143,7 @@ void Arduino7SegmentShift::timeDis(uint16_t seconds, uint16_t minutes)
 //	delay(_DIS_DELAY_TIME);
 }
 
-void Arduino7SegmentShift::valueDis(uint16_t value)
+void ARDUINO_7SEGMENT_SHIFT::valueDis(uint16_t value)
 {
 //	value_dis_time--;
 	//value_dis_time = 0;
@@ -258,7 +258,7 @@ void Arduino7SegmentShift::valueDis(uint16_t value)
 	//	delay(_DIS_DELAY_TIME);
 }
 
-void Arduino7SegmentShift::valueDis2(uint16_t value)
+void ARDUINO_7SEGMENT_SHIFT::valueDis2(uint16_t value)
 {
 	uint16_t _true_value = value;
 	//	if(value != last_value_dis)
@@ -365,7 +365,7 @@ void Arduino7SegmentShift::valueDis2(uint16_t value)
 //	delay(_DIS_DELAY_TIME + 1);
 }
 
-void Arduino7SegmentShift::ballDisplay(void)
+void ARDUINO_7SEGMENT_SHIFT::ballDisplay(void)
 {
 	ball_dis_time--;
 	if (ball_dis_time <= 0)
@@ -418,7 +418,7 @@ void Arduino7SegmentShift::ballDisplay(void)
 //		delay(_DIS_DELAY_TIME);
 }
 
-void Arduino7SegmentShift::loadingDisplay(void)
+void ARDUINO_7SEGMENT_SHIFT::loadingDisplay(void)
 {
 	step_loading_delay_time--;
 	if (step_loading_delay_time <= 0)
@@ -487,38 +487,38 @@ void Arduino7SegmentShift::loadingDisplay(void)
 //		delay(_DIS_DELAY_TIME);
 }
 
-void Arduino7SegmentShift::clrBallDis(void)
+void ARDUINO_7SEGMENT_SHIFT::clrBallDis(void)
 {
 	next_ball_dis = 0;
 	ball_dis_time = _BAll_DIS_DELAY;
 }
 
-void Arduino7SegmentShift::clrLoadingDis(void)
+void ARDUINO_7SEGMENT_SHIFT::clrLoadingDis(void)
 {
 	next_step = 0;
 	step_loading_delay_time = _STEP_LOADING_DELAY_TIME;
 }
 
-void Arduino7SegmentShift::ballUpDis(void)
+void ARDUINO_7SEGMENT_SHIFT::ballUpDis(void)
 {
 	register_array[0] = 0xFF - _DISPLAY_BAll_UP; //BollUp
 	sendSerialData(2, register_array);
 }
 
-void Arduino7SegmentShift::ballDownDis(void)
+void ARDUINO_7SEGMENT_SHIFT::ballDownDis(void)
 {
 	register_array[0] = 0xFF - _DISPLAY_BAll_DOWN; //BollLow
 	sendSerialData(2, register_array);
 }
 
-void Arduino7SegmentShift::disOff1(void)
+void ARDUINO_7SEGMENT_SHIFT::disOff1(void)
 {
 	register_array[0] = 0xFF;
 	register_array[1] = 0xFF;
 	sendSerialData(2, register_array);
 }
 
-void Arduino7SegmentShift::disOff2(void)
+void ARDUINO_7SEGMENT_SHIFT::disOff2(void)
 {
 	register_array[0] = 0xFF;
 	register_array[1] = 0xFF;
@@ -528,7 +528,7 @@ void Arduino7SegmentShift::disOff2(void)
 	sendSerialData(2, register_array);
 }
 
-void Arduino7SegmentShift::testDis(void)
+void ARDUINO_7SEGMENT_SHIFT::testDis(void)
 {
 	register_array[0] = 0xFF - _DISPLAY_C;
 	register_array[1] = _DIG_3;
@@ -554,7 +554,7 @@ void Arduino7SegmentShift::testDis(void)
 	//	delay(5);
 }
 
-void Arduino7SegmentShift::loopTime(uint16_t _t)
+void ARDUINO_7SEGMENT_SHIFT::loopTime(uint16_t _t)
 {
 	uint16_t _i = 0;
 	uint8_t p = 0;
@@ -564,7 +564,7 @@ void Arduino7SegmentShift::loopTime(uint16_t _t)
 	}
 }
 
-void Arduino7SegmentShift::sendSerialData(int16_t registerCount, int16_t *pValueArray)   // How many shift registers?, // Array of bytes with LSByte in array [0]
+void ARDUINO_7SEGMENT_SHIFT::sendSerialData(int16_t registerCount, int16_t *pValueArray)   // How many shift registers?, // Array of bytes with LSByte in array [0]
 {
 	int reg, bitMask, value;
 	// uint16_t _loop = 50;

@@ -6,7 +6,7 @@
 #define _PIN_SEGMENT_LATCH	4
 
 //Creat object
-Arduino7SegmentShift display(_PIN_SEGMENT_CLK, _PIN_SEGMENT_DATA, _PIN_SEGMENT_LATCH);
+ARDUINO_7SEGMENT_SHIFT display(_PIN_SEGMENT_CLK, _PIN_SEGMENT_DATA, _PIN_SEGMENT_LATCH);
 
 void setup()
 {

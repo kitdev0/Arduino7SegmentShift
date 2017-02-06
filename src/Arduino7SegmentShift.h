@@ -1,7 +1,5 @@
-// Arduino7SegmentShift_v101.h
-
-#ifndef _Arduino7SegmentShift_V101_h
-#define _Arduino7SegmentShift_V101_h
+#ifndef _ARDUINO_7SEGMENT_SHIFT_h
+#define _ARDUINO_7SEGMENT_SHIFT_h
 
 #include "Arduino.h"
 
@@ -53,12 +51,12 @@
 
 #define _DIS_DELAY_TIME		2
 
-class Arduino7SegmentShift
+class ARDUINO_7SEGMENT_SHIFT
 {
 
 public:
-	Arduino7SegmentShift(uint8_t _clk_pin, uint8_t _data_pin, uint8_t _latch_pin);
-	~Arduino7SegmentShift();
+	ARDUINO_7SEGMENT_SHIFT(uint8_t _clk_pin, uint8_t _data_pin, uint8_t _latch_pin);
+	~ARDUINO_7SEGMENT_SHIFT();
 
 	void init7SegDis(void);
 	void displayNumeral(uint16_t _num, uint16_t _digit);
@@ -102,4 +100,4 @@ private:
 
 };
 
-#endif //_Arduino7SegmentShift_V101_h
+#endif //_ARDUINO_7SEGMENT_SHIFT_h
