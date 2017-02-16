@@ -4,6 +4,10 @@
 #include "Arduino.h"
 
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
+//    _a_
+//  b|_d_|c
+//  h|_g_|e
+
 //a = 1
 //b = 2
 //c = 4
@@ -12,6 +16,7 @@
 //f = 32
 //g = 64
 //h = 128
+
 #define _DIS_A 0x01
 #define _DIS_B 0x02
 #define _DIS_C 0x04
@@ -34,6 +39,7 @@
 #define _DISPLAY_P 				0x8F
 #define _DISPLAY_S 				0x5B
 #define _DISPLAY_T				0xCA
+#define _DISPLAY_n				0x98
 #define _DISPLAY_DP 			0x20
 #define _DISPLAY_HYPHEN 		0x08
 #define _DISPLAY_BAll_UP 		0xD8
