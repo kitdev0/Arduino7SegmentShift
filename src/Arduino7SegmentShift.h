@@ -40,6 +40,7 @@
 #define _DISPLAY_S 				0x5B
 #define _DISPLAY_T				0xCA
 #define _DISPLAY_n				0x98
+#define _DISPLAY_N				0x97
 #define _DISPLAY_DP 			0x20
 #define _DISPLAY_HYPHEN 		0x08
 #define _DISPLAY_BAll_UP 		0xD8
